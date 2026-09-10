@@ -46,11 +46,13 @@ os dados passaram por um pré-processamento que identificou e removeu usuários 
 
 ### O outlier que distorce receita e ticket médio
 
-Um único pedido de **US$ 19.920,40** — o maior de toda a base — é responsável por boa parte da
-vantagem aparente do grupo B em receita acumulada e ticket médio:
+Um único pedido de **US$ 19.920,40** — o maior de toda a base — explica toda a vantagem aparente
+do grupo B no ticket médio e 75% da vantagem na receita acumulada:
 
 - Com esse pedido, o ticket médio de B fecha o mês em **+27,8%** acima de A.
-- Sem ele, o ticket médio de B cai para **4% abaixo** de A — a vantagem desaparece por completo.
+- Sem ele, o ticket médio de B cai para **4,0% abaixo** de A — a vantagem desaparece por completo.
+- Na receita total, a vantagem de B cai de +26,4 mil para +6,5 mil. O que sobra vem de B ter 17,1%
+  mais pedidos, ou seja, da conversão, e não de pedidos maiores.
 
 ### Testes de significância (Mann-Whitney U, α = 0,05)
 
@@ -64,18 +66,20 @@ vantagem aparente do grupo B em receita acumulada e ticket médio:
 As anomalias foram definidas com base nos percentis 95/99: usuários com mais de 2 pedidos e
 pedidos com valor acima de US$ 830,30 (percentil 99).
 
-O padrão que emerge é claro: a diferença de **conversão** entre os grupos se mantém — e até se
-fortalece — depois de remover as anomalias, o que é o oposto do comportamento esperado de um
-efeito artificial. Já a diferença de **ticket médio** nunca chega a ser estatisticamente
+O padrão que emerge é claro: a diferença de **conversão** entre os grupos se mantém depois de
+remover as anomalias. A subida de +16,0% para +18,9% vem em parte do próprio filtro, que tirou
+20 pedidos de A e 10 de B, então ela mostra que o resultado não depende das anomalias, e não que
+o efeito cresceu. Já a diferença de **ticket médio** nunca chega a ser estatisticamente
 significativa, e a vantagem nominal de B desaparece (e inverte de sinal) assim que os outliers
 são retirados.
 
 ## Decisão final
 
 **Parar o teste e declarar o grupo B como líder**, com base exclusivamente na conversão — a única
-métrica que se sustenta estatisticamente nos dados brutos e filtrados. A vantagem de receita e
-ticket médio observada nos gráficos acumulados não resiste ao teste de significância nem à remoção
-do outlier de US$ 19.920,40, e por isso não é usada como argumento da decisão.
+métrica que se sustenta estatisticamente nos dados brutos e filtrados. A vantagem de ticket
+médio observada nos gráficos acumulados não resiste ao teste de significância nem à remoção do
+outlier de US$ 19.920,40, e a receita que B mantém sem ele é consequência da conversão; por isso
+nenhuma das duas entra como argumento separado da decisão.
 
 ## Tecnologias utilizadas
 
